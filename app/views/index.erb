@@ -1,23 +1,28 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
-
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+  <h1>Welcome to MembersOn.ly!</h1>
+  <div class="login">
+    <h4>Welcome back!</h4>
+    <form method="post" action="/login">
+      <label for="email">Email:</label>
+      <input type="email" name="email"/>
+      <label for="password">Password:</label>
+      <input type="password" name="password"/>
+      <input type="submit" value="Log In"/>
+    </form>
+  </div>
+  <div class="create">
+    <h3>Join the club!</h3>
+    <% if !@errors.empty? %>
+        <% @errors.each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+    <% end %>
+    <form method="post" action="/signup">
+      <input type="text" name="post[name]" placeholder="Name"/>
+      <input type="email" name="post[email]" placeholder="Email"/>
+      <input type="password" name="post[new_password]" placeholder="Password"/>
+      <input type="password" name="post[new_password_confirmation]" placeholder="Password Confirmation"/>
+      <input type="submit" value="Sign Up"/>
+    </form>
+  </div>
 </div>
